@@ -17,6 +17,10 @@
 <script>
     export default {
         mounted() {
+            this.$store.dispatch('getUserData')
+                .then(() => {
+                    
+                });
             console.log('Component mounted.')
         }
     }

@@ -20,9 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([
     'namespace' => 'App\Http\Controllers\Api',
-    'prefix' => 'auth'
+    'prefix' => 'user'
 ], function() {
     Route::get('/register', 'AuthController@register');
     Route::get('/login', 'AuthController@login');
-    Route::get('/me', 'AuthController@me')->middleware('auth:sanctum');
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+        Route::get('/me', 'AuthController@me')->middleware('auth:sanctum');
+    });
 });
